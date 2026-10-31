@@ -1,0 +1,31 @@
+build*
+
+# Compiled files
+*.o
+*.so
+*.a
+*.pcm
+*.d
+
+# ROOT generated files
+*.root
+*.rootmap
+
+# Geant4 generated files
+*.rndm
+
+# Local editor settings
+.vscode/
+
+# Temporary files
+*~
+.DS_Store
+
+# Unused geometry assets
+geometry/*.stl
+geometry/*.ipynb
+
+# Original simulation macros not used in my workflow
+test-macros/testphotons-*.mac
+test-macros/testsolarwind-*.mac
+test-macros/

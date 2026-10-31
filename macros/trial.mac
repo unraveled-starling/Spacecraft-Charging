@@ -1,0 +1,68 @@
+# Macro file for 00_stackediteration0_onlysolarwind_num30000
+#
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+/process/verbose 0
+/process/had/verbose 0
+/process/em/verbose 0
+#
+/random/setSeeds 10008859 10005380
+/random/setSavingFlag 1
+#
+/process/em/fluo true
+/process/em/auger true
+/process/em/augerCascade true
+/process/em/deexcitationIgnoreCut true
+/process/em/Polarisation true
+/process/em/PhotoeffectBelowKShell true
+#
+/process/em/lowestElectronEnergy 0 eV
+/process/em/lowestMuHadEnergy 10 eV
+/process/em/enableSamplingTable 1
+#
+/process/eLoss/CSDARange 1
+/process/eLoss/UseICRU90 1
+/process/eLoss/UseAngularGenerator true
+#
+/geometry/worldX 10000 um
+/geometry/worldY 10000 um
+/geometry/worldZ 10000 um
+/geometry/MaterialTemperature 425 K
+/geometry/MaterialDensity 2.2 g/cm3
+/geometry/IterationTime 0 s
+/geometry/ApplyChargeDissipation true
+/field/InitialDepth 8
+/field/MinimumStep 0.1 um
+/field/PercentGradThreshold 0.8
+/field/OctreeDepth 11
+/field/file test-fieldmap.txt 
+/charges/file test-charges.txt
+#
+/geometry/rootoutput/file results/final/check.root
+#/geometry/cadinput/file regularSpheres_fromPython.stl
+/geometry/epsilon 4
+#/geometry/PBC true
+#/geometry/cadinput/scale 0.001
+/run/initialize
+#
+/gps/particle e-
+
+/gps/ene/type Mono
+/gps/ene/mono 500 keV
+
+/gps/pos/type Plane
+/gps/pos/shape Square
+/gps/pos/halfx 250 um
+/gps/pos/halfy 250 um
+/gps/pos/centre -1500 0 0 um
+
+/gps/pos/rot1 0 0 1
+/gps/pos/rot2 0 1 0
+/gps/direction 1 0 0
+#
+/control/execute test-macros/vis.mac
+#
+/run/printProgress 100
+/run/beamOn 100

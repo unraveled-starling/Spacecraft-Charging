@@ -1,0 +1,9 @@
+/geometry/worldX 5000 um
+/geometry/worldY 5000 um
+/geometry/worldZ 5000 um
+
+/run/initialize
+
+/vis/open
+/vis/drawVolume
+/vis/viewer/flush

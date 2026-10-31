@@ -1,0 +1,46 @@
+IN ROOT
+to count actual number of secondaries, instead of ridiculous steps
+
+
+............. first command to check output parameters ..............
+
+TTree *t = (TTree*)_file0->Get("Hit Data");
+t->Print();
+
+
+
+............. true total unique secondaries ...........
+
+t->Draw("Event_Number*100000 + Track_ID", "Parent_ID > 0", "goff"); std::set<double> sTotal(t->GetV1(), t->GetV1() + t->GetSelectedRows()); std::cout << "True Total unique secondaries: " << sTotal.size() << std::endl;
+
+
+............. true unique electrons ....................
+
+t->Draw("Event_Number*100000 + Track_ID", "Parent_ID > 0 && Particle_Type == \"e-\"", "goff"); std::set<double> sElec(t->GetV1(), t->GetV1() + t->GetSelectedRows()); std::cout << "True Unique e-: " << sElec.size() << std::endl;
+
+
+............... true unique photons ...................
+
+t->Draw("Event_Number*100000 + Track_ID", "Parent_ID > 0 && Particle_Type == \"gamma\"", "goff"); std::set<double> sGam(t->GetV1(), t->GetV1() + t->GetSelectedRows()); std::cout << "True Unique gammas: " << sGam.size() << std::endl;
+
+
+.............. immediate secondaries (directly from primary) ..............
+
+t->Draw("Event_Number*100000 + Track_ID", "Parent_ID == 1", "goff"); std::set<double> sSec(t->GetV1(), t->GetV1() + t->GetSelectedRows()); std::cout << "Immediate Secondaries: " << sSec.size() << std::endl;
+
+
+............. tertiaries & beyond .....................
+
+t->Draw("Event_Number*100000 + Track_ID", "Parent_ID > 1", "goff"); std::set<double> sTert(t->GetV1(), t->GetV1() + t->GetSelectedRows()); std::cout << "Tertiaries & Beyond: " << sTert.size() << std::endl;
+
+
+
+
+slab geometry --- detectorconstruction.cc
+world volume --- trial.mac
+visualisation visibility (wireframe & boolean) --- vis.mac
+root output location --- trial.mac
+particle energy & count --- trial.mac
+particle source shooting range --- trial.mac
+material --- detectorconstruction.cc
+
